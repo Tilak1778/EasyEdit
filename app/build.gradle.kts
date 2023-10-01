@@ -52,7 +52,9 @@ dependencies {
     implementation("io.reactivex.rxjava2:rxjava:2.1.0")
     implementation("io.reactivex.rxjava2:rxandroid:2.0.1")
     implementation("com.github.bumptech.glide:glide:4.11.0")
+    implementation("com.google.android.gms:play-services-ads:22.4.0")
     annotationProcessor("com.github.bumptech.glide:compiler:4.11.0")
+
 
 
 
