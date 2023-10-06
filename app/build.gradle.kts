@@ -15,8 +15,8 @@ android {
         applicationId = "com.richmama.easyedit"
         minSdk = 27
         targetSdk = 33
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 3
+        versionName = "1.3"
 
         renderscriptTargetApi = 29
         renderscriptSupportModeEnabled = true

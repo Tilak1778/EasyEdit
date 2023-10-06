@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,13 +21,14 @@ public class ResultActivity extends AppCompatActivity {
 
     ActivityResultBinding binding;
     private InterstitialAd mInterstitialAd;
+    private Uri imageUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityResultBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
+        imageUri = getIntent().getData();
         binding.resultImage.setImageURI(getIntent().getData());
 
         AdRequest adRequest = new AdRequest.Builder().build();
@@ -65,6 +67,51 @@ public class ResultActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+
+        binding.buttonShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                shareIntent.setType("image/jpeg");
+                shareIntent.putExtra(Intent.EXTRA_STREAM, imageUri);
+                startActivity(Intent.createChooser(shareIntent, "Share Image"));
+            }
+        });
+
+        binding.buttonWhatsapp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                shareIntent.setType("image/jpeg");
+                shareIntent.setPackage("com.whatsapp");
+                shareIntent.putExtra(Intent.EXTRA_STREAM, imageUri);
+                startActivity(Intent.createChooser(shareIntent, "Share Image"));
+            }
+        });
+
+        binding.buttonInstagram.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                shareIntent.setType("image/jpeg");
+                shareIntent.setPackage("com.instagram.android");
+                shareIntent.putExtra(Intent.EXTRA_STREAM, imageUri);
+                startActivity(Intent.createChooser(shareIntent, "Share Image"));
+            }
+        });
+        binding.buttonFacebook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                shareIntent.setType("image/jpeg");
+                shareIntent.setPackage("com.facebook.katana");
+                shareIntent.putExtra(Intent.EXTRA_STREAM, imageUri);
+                startActivity(Intent.createChooser(shareIntent, "Share Image"));
+            }
+        });
+
+
 
 
     }
